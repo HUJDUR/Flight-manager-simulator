@@ -1,5 +1,7 @@
 package simulator;
 
+import java.util.ArrayList;
+
 public class MenuInput {
 	
 	public static void unosAerodroma(String imeAerodroma) {
@@ -8,14 +10,45 @@ public class MenuInput {
 			System.out.println("Aerodrom je uspjesno kreiran.");
 			UI.aerodromi.add(new Airport(imeAerodroma));
 		}
-	}
-	
-	public static void unosZracneLinije(String imeZracneLinije) {
 		
-		if (Checks.provjeraZracneLinije(imeZracneLinije) == true) {
-			System.out.println("Zracna linija je uspjesno kreiran.");
-			UI.linije.add(new Airline(imeZracneLinije));
-		}
+		Menu.menu();
 	}
 	
+	public static void unosAviokompanije(String imeAviokompanije) {
+		
+		if (Checks.provjeraAviokompanije(imeAviokompanije) == true) {
+			System.out.println("Aviokompanija je uspjesno kreiran.");
+			UI.aviokompanije.add(new Airline(imeAviokompanije));
+		}
+		
+		Menu.menu();
+	}
+	
+	public static void unosLeta(String imeAerodroma, String imeAviokompanije, String origin, String destinacija, int brojMjesta) {
+		
+		if (Checks.provjeraLeta(imeAerodroma, imeAviokompanije, origin, destinacija, brojMjesta) == true) {
+			System.out.println("Let je uspjesno kreiran.");
+			ArrayList<Seat> mjesta = new ArrayList<>();
+			for (int i = 0; i < brojMjesta; i++) 
+				mjesta.add(new Seat(false));
+			UI.letovi.add(new Flight(Airport.getAirport(imeAerodroma), Airline.getAirline(imeAviokompanije), origin, destinacija, mjesta));
+		}
+		
+		Menu.menu();
+	}
+	
+	public static void rezervisanjeMjesta(String destinacija) {
+		
+		if (Checks.provjeraRezervisanja(destinacija) == true) {
+			System.out.printf("Rezervisali ste mjesto za %s, avion polece sa %s aerodroma", destinacija, Flight.getFlight(destinacija).getAerodrom());
+			for (int i = 0; i < Flight.getFlight(destinacija).getMjesta().size(); i++) {
+				if (Flight.getFlight(destinacija).getMjesta().get(i).isStanje() == false) 
+					Flight.getFlight(destinacija).getMjesta().get(i).setStanje(true);
+			}	
+			
+		} else 
+			System.out.println("Sva mjesta su popunjena.");
+	
+		Menu.menu();
+	}
 }
