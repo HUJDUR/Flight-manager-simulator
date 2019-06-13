@@ -19,7 +19,7 @@ public class Airline {
 	public static Airline getAirline(String imeAviokompanije) {
 		
 		for (int i = 0; i < UI.aviokompanije.size(); i++) {
-			if (UI.aviokompanije.get(i).imeAviokompanije == imeAviokompanije)
+			if (imeAviokompanije.equals(UI.aviokompanije.get(i).imeAviokompanije))
 				return UI.aviokompanije.get(i);
 		}
 		

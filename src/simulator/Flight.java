@@ -61,7 +61,7 @@ public class Flight {
 	public static Flight getFlight(String destinacija) {
 		
 		for (int i = 0; i < UI.letovi.size(); i++) {
-			if (UI.letovi.get(i).destinacija == destinacija)
+			if (destinacija.equals(UI.letovi.get(i).destinacija))
 				return UI.letovi.get(i);
 		}
 		

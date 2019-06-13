@@ -19,7 +19,7 @@ public class Airport {
 	public static Airport getAirport(String imeAerodroma) {
 		
 		for(int i = 0; i < UI.aerodromi.size(); i++) {
-			if (UI.aerodromi.get(i).imeAerodroma == imeAerodroma)
+			if (imeAerodroma.equals(UI.aerodromi.get(i).imeAerodroma))
 				return UI.aerodromi.get(i);
 		}
 		
