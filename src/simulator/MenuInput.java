@@ -40,7 +40,7 @@ public class MenuInput {
 	public static void rezervisanjeMjesta(String destinacija) {
 		
 		if (Checks.provjeraRezervisanja(destinacija) == true) {
-			System.out.printf("Rezervisali ste mjesto za %s, avion polece sa %s aerodroma.\n", destinacija, Flight.getFlight(destinacija).getAerodrom());
+			System.out.printf("Rezervisali ste mjesto za %s, avion polece sa %s aerodroma.\n", destinacija, Flight.getFlight(destinacija).getAerodrom().getImeAerodroma());
 			for (int i = 0; i < Flight.getFlight(destinacija).getMjesta().size(); i++) {
 				if (Flight.getFlight(destinacija).getMjesta().get(i).isStanje() == false) 
 					Flight.getFlight(destinacija).getMjesta().get(i).setStanje(true);
